@@ -1,6 +1,6 @@
-public class Card {
+public abstract class Card {
 
-    private CardInfo cardInfo;
+    protected CardInfo cardInfo;
     public Card(String cardType){
         cardInfo = new CardInfo(cardType);
     }
@@ -11,8 +11,8 @@ public class Card {
 }
 
 class CardInfo{
-    private int score;
-    private String cardType;
+    protected int score;
+    protected String cardType;
 
     public CardInfo(String cardType){
         this.cardType = cardType;
@@ -24,9 +24,7 @@ class CardInfo{
 }
 
 class HammerCard extends Card{
-    public HammerCard(String cardType){
-        super(cardType);
-    }
+    public HammerCard(String cardType){super(cardType);}
 }
 
 class SawCard extends Card{

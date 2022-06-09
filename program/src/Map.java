@@ -12,10 +12,10 @@ public class Map {
 
     public Map(File mapDataFile) throws NullPointerException, FileNotFoundException {
         this.mapDataFile = mapDataFile;
-        LoadMap();
+        loadMap();
     }
 
-    private void LoadMap() throws FileNotFoundException {
+    private void loadMap() throws FileNotFoundException {
         Scanner reader = new Scanner(mapDataFile);
         ArrayList<String[]> parsedSentenceList = new ArrayList<>();
 
@@ -61,7 +61,6 @@ public class Map {
             String[] tempStringArray = parsedSentenceList.get(i);
 
             if(i != 0){tempCell.setCard(MakeGame.findCardType(tempStringArray[0]));} //시작줄은 S cell이지만 Saw의 S와 겹치므로 제외
-            else{}
 
             for(int j=1; j<tempStringArray.length; j++){tempCell.addDirection(tempStringArray[j]);} //cell에 방향 저장
 
@@ -103,8 +102,10 @@ public class Map {
     private int countHeight(String[] parsedSentence){
         String direction = "";
         if(parsedSentence.length == 3) {direction = parsedSentence[1]+parsedSentence[2]; /*System.out.println(direction);*/}
-        if(direction.equals("LD") || direction.equals("UD")){return 1;}
-        else if(direction.equals("LU") || direction.equals("DU")){return -1;}
+        else if(parsedSentence.length == 2){direction = parsedSentence[1];}
+
+        if(direction.equals("LD") || direction.equals("UD") || direction.equals("D")){return 1;}
+        else if(direction.equals("LU") || direction.equals("DU") || direction.equals("U")){return -1;}
         else{return 0;}
     }
 }

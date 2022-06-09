@@ -1,11 +1,11 @@
-public class Coordinate {
+public class Coordinate implements Cloneable{
     private int x;
     private int y;
 
     public Coordinate(int y, int x){this.x = x; this.y = y;}
 
-    public void setX(int x) {this.x = x;}
-    public void setY(int y) {this.y = y;}
+//    public void setX(int x) {this.x = x;}
+//    public void setY(int y) {this.y = y;}
 
     @Override
     public String toString() {
@@ -13,6 +13,11 @@ public class Coordinate {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    protected Coordinate clone() throws CloneNotSupportedException {
+        return (Coordinate) super.clone();
     }
 
     public int getX() {return x;}
